@@ -1,75 +1,54 @@
-:root {
-  --cell-size: 64px;
+.title {
+   text-align: center;
+   background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb);
+   width: 400px;
+   margin: auto;
+   border-radius: 20px;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
+.title-label {
+    width: 400px;
+    font-size: 32px;
 }
 
-body {
-  background: #ff7;
-  font-size: 16px;
-}
-
-<!-- HTML !-->
-<button class="btn" role="button">Button 56</button>
-
-/* CSS */
 .btn {
-  align-items: center;
-  background-color: #fee6e3;
-  border: 2px solid #111;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #111;
-  cursor: pointer;
-  display: flex;
-  font-family: Inter,sans-serif;
-  font-size: 16px;
-  height: 48px;
-  justify-content: center;
-  line-height: 24px;
-  max-width: 100%;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.btn:after {
-  background-color: #111;
-  border-radius: 8px;
-  content: "";
-  display: block;
-  height: 48px;
-  left: 0;
-  width: 100%;
-  position: absolute;
-  top: -2px;
-  transform: translate(8px, 8px);
-  transition: transform .2s ease-out;
-  z-index: -1;
-}
-
-.btn:hover:after {
-  transform: translate(0, 0);
-}
-
-.btn:active {
-  background-color: #ffdeda;
-  outline: 0;
+    margin: 50px auto;
+    display: block;
+    width: 400px;
+    border-radius: 10px;
+    color: white;
+    transition: 2s linnear;
+    background: #0B63F6;
+    height: 40px;
 }
 
 .btn:hover {
-  outline: 0;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #3C82F8;
 }
 
-@media (min-width: 768px) {
-  .btn {
-    padding: 0 40px;
-  }
+.board-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+}
+
+.cell {
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 100px;
+    height:100px;
+}
+
+.activated {
+    background-image: url('../img/goblin.png');
+    background-position: center;
+}
+

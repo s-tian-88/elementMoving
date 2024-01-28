@@ -1,37 +1,48 @@
 export default class GamePlay {
-    constructor (container) {
-        this.boardSize = 4;
-        this.speed = 1000;
-    }
-
-    bindToDom(container) {
+    constructor(container) {
         if (!(container instanceof HTMLElement)) {
-            throw new Error('container is not HTMLElement!')
+            throw new Error('container is not HTMLElement')
         }
         this.container = container;
+        this.boardSize = 4;
+        this.speed = 1000;
+        this.coun = 0
     }
 
-    createBoard(lvl) {
-        this.checkBinding();
+    start(lvl=3) {
+        this.container.innerHTML = `
+            <div class='title'>
+                <span class='title-label'>Поймай гоблина</span>
+            </div>
+            <div class="controls">
+                <button data-id="action-new" class="btn">Новая игра</button>
+            </div>
+            <div class="board-container">
+                <div data-id="board" class="board"></div>
+            </div>
+            `;
+        this.newGameElement = this.container.querySelector('.btn');
+        this.newGameElement.addEventListener('click', event => this.onNewGameClick(event));
+        this.boardElement = document.querySelector('.board');
 
-        this.button = document.createElement('button')
-        this.button.classList.add('btn')
 
-        this.header = document.createElement('header');
-        this.header.classList.add('header');
+        for (let i = 0; i < lvl ** 2; i++) {
+            const cellElement = document.createElement('div');
+            cellElement.classList.add('cell');
+            cellElement.addEventListener('click', event => this.onCellClick(event));
+            this.boardElement.appendChild(cellElement);
+        }
 
-        this.label = document.createElement('label');
-        this.label.classList.add('label');
-
-        this.label
-
-        this.container.Child(label);
-        this.continer.Chilt(button);
-
+        
     }
 
-    checkBinding() {
-    if (this.container === null) {
-      throw new Error('GamePlay not bind to DOM');
-    }}
+    onNewGameClick(event) {
+        event.preventDefault();
+        console.log('button click')
+    }
+    
+    onCellClick(event) {
+        event.preventDefault();
+        let currentElement = event.currentTarget;
+    }
 }
