@@ -1,11 +1,11 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name].[contenthash].js',
     clean: true,
   },
   module: {
@@ -13,15 +13,15 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: { loader: "babel-loader" },
+        use: { loader: 'babel-loader' },
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html") }),
+    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
   ],
 };

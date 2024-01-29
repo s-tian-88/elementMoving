@@ -7,7 +7,6 @@ export default class GamePlay {
     this.boardSize = 4;
     this.speed = 1100;
     this.coun = 0;
-    this.cellsList = [];
   }
 
   start() {
@@ -29,6 +28,7 @@ export default class GamePlay {
     for (let i = 0; i < 3 ** 2; i++) {
       const cellElement = document.createElement('div');
       cellElement.classList.add('cell');
+      // cellElement.addEventListener('click', (event) => this.onCellClick(event));
       this.boardElement.appendChild(cellElement);
     }
 
@@ -36,13 +36,13 @@ export default class GamePlay {
   }
 
   getRandomCell(cellObj = null) {
-    this.cellsList = [...document.querySelectorAll('.cell')];
+    const cellsList = [...document.querySelectorAll('.cell')];
     if (!cellObj) {
-      return this.cellsList[Math.floor(Math.random() * this.cellsList.length)];
+      return this.getRandomChoice(cellsList);
     }
-    const index = this.cellsList.indexOf(cellObj);
-    this.cellsList.splice(index, 1);
-    return this.cellsList[Math.floor(Math.random() * this.cellsList.length)];
+    const index = cellsList.indexOf(cellObj);
+    cellsList.splice(index, 1);
+    return this.getRandomChoice(cellsList);
   }
 
   goblinRulete() {
@@ -54,5 +54,19 @@ export default class GamePlay {
       next.classList.add('activated');
       previous = next;
     }, this.speed);
+  }
+
+  // onNewGameClick(event) {
+  //   event.preventDefault();
+  //   pass;
+  // }
+
+  // onCellClick(event) {
+  //   event.preventDefault();
+  //   pass;
+  // }
+
+  static getRandomChoice(array) {
+    return array[Math.floor((Math.random() * array.length))];
   }
 }
