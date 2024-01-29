@@ -5,7 +5,7 @@ export default class GamePlay {
         }
         this.container = container;
         this.boardSize = 4;
-        this.speed = 1000;
+        this.speed = 1100;
         this.coun = 0
     }
 
@@ -26,23 +26,57 @@ export default class GamePlay {
         this.boardElement = document.querySelector('.board');
 
 
-        for (let i = 0; i < lvl ** 2; i++) {
+        for (let i = 0; i < 2 ** 2; i++) {
             const cellElement = document.createElement('div');
             cellElement.classList.add('cell');
             cellElement.addEventListener('click', event => this.onCellClick(event));
             this.boardElement.appendChild(cellElement);
         }
 
+        this.goblinRulete();
+
+
         
+    }
+
+    getRandomCell(cellObj=null) {
+        const cellsList = [...document.querySelectorAll('.cell')];
+        if (!cellObj) {
+            return this.getRandomChoice(cellsList)
+        } else {
+            let index = cellsList.indexOf(cellObj);
+            cellsList.splice(index, 1);
+            return this.getRandomChoice(cellsList)
+        }
+
+    }
+
+    goblinRulete(lvl) {
+        let previous = this.getRandomCell();
+        previous.classList.add('activated');
+        setInterval(() => {
+            console.log('setInterrval')
+            let next = this.getRandomCell(previous);
+            previous.classList.remove('activated');
+            next.classList.add('activated');
+            previous = next
+
+        }, this.speed);
+
+
     }
 
     onNewGameClick(event) {
         event.preventDefault();
-        console.log('button click')
+        pass;
     }
-    
+
     onCellClick(event) {
         event.preventDefault();
-        let currentElement = event.currentTarget;
+        pass;
+    }
+
+    getRandomChoice(array) {
+        return array[Math.floor((Math.random()*array.length))];
     }
 }
