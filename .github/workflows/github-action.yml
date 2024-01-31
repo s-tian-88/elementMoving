@@ -2,11 +2,17 @@ name: Elements moving
 
 on: [push, pull_request]
 
+# on:
+#   push: 
+#     branches: ["main"]
+#   pull_request:
+#     branches: ["main"]
+
 permissions:
   checks: write
   contents: write
   pages: write
-  id-token: write
+  # id-token: write
   deployments: write
 
 jobs:
