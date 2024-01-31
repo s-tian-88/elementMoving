@@ -1,18 +1,12 @@
-name: Elements moving
+name: ElementsMoving 
 
 on: [push, pull_request]
-
-# on:
-#   push: 
-#     branches: ["main"]
-#   pull_request:
-#     branches: ["main"]
 
 permissions:
   checks: write
   contents: write
   pages: write
-  # id-token: write
+  id-token: write
   deployments: write
 
 jobs:
@@ -39,9 +33,6 @@ jobs:
 
       - name: Run linters
         run: npm run lint
-
-      # - name: Run test
-      #   run: yarn coverage
 
       - name: Build
         run: npm run build
